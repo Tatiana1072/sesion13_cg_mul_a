@@ -1,5 +1,4 @@
 var scene = new THREE.Scene();
-
 function cubo(x, y, z, color, material, alambrado) {
    var cubeGeometry = new THREE.BoxGeometry(x, y, z);
    var cubeMaterial;
@@ -29,6 +28,7 @@ function cubo(x, y, z, color, material, alambrado) {
    return (cube);
 }
 
+
 function init() {
    var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 
@@ -41,7 +41,12 @@ function init() {
 
    //Creacion de los 3 cubos con sus caracteristicas
    Cubo = []; //Se define un array para almacenar los 3 cubos
-   tam = 1; //dimension inicial de los cubos
+var tam = prompt("Digite la longitud del lado del cubo");
+if(tam<=0){
+   //Error();
+alert("Las dimensiones del cubo deberían ser mayores y diferentes de 0");
+}else
+   //dimension inicial de los cubos
    Cubo.push(cubo(tam, tam, tam, 0xCCCC99, 'Phong', false));
    Cubo.push(cubo(tam, tam, tam, 0xCBCCCA, 'Phong', false));
    Cubo.push(cubo(tam, tam, tam, 0xCBCCCA, 'Phong', false));
@@ -59,19 +64,21 @@ unidades=(3*tam)/4+((3*tam)/8)*(i-1);
 Cubo[i].scale.set(escala, escala, escala);
 Cubo[i].translateY(unidades);
 }
-angulo=Math.PI;
+
+f=prompt("Digite el angulo de giro del cubo. (Entre 0° y 90°)")
+if(f>90){
+   //Error();
+alert("El angulo que debe ingresar debería estar comprendido entre 0° y 90° ");
+}else
+angulo=Math.PI*f/180;
 Cubo[0].rotateY(angulo);
 Cubo[2].rotateY(angulo);
 
    //EJES: X rojo, Y verde, Z azul
 
-b=(tam/2)*Math.sin(angulo);
-Cubo[0].translateZ(b);
-
-d=(tam/4)*Math.sin(angulo);
-Cubo[2].translateZ(d);
-
-
+var h=tam/(Math.sin(angulo)+Math.cos(angulo)+1)
+var x=h*Math.sin(angulo)
+var y=(tam-h)*Math.tan(angulo)
 
 //posicionamiento de la luz
 light = new THREE.PointLight(0xFFFFFF);
@@ -83,6 +90,7 @@ light = new THREE.PointLight(0xFFFFFF);
 //agrega la salida del render al elemento html
    document.getElementById("webgl-output").appendChild(renderer.domElement);
    renderer.render(scene, camera);
-
-
 }
+
+
+
