@@ -59,7 +59,7 @@ unidades=(3*tam)/4+((3*tam)/8)*(i-1);
 Cubo[i].scale.set(escala, escala, escala);
 Cubo[i].translateY(unidades);
 }
-angulo=Math.PI/12;
+angulo=Math.PI;
 Cubo[0].rotateY(angulo);
 Cubo[2].rotateY(angulo);
 
