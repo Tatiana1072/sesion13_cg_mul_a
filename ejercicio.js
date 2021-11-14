@@ -80,6 +80,13 @@ var h=tam/(Math.sin(angulo)+Math.cos(angulo)+1)
 var x=h*Math.sin(angulo)
 var y=(tam-h)*Math.tan(angulo)
 
+Cubo[0].position.x+=x;
+Cubo[0].position.z+=x;
+Cubo[2].position.x+=x;
+Cubo[2].position.z+=x;
+Cubo[1].position.x+=x;
+Cubo[1].position.z+=x;
+
 //posicionamiento de la luz
 light = new THREE.PointLight(0xFFFFFF);
    light.position.set(5*tam, 8*tam, 10*tam);
